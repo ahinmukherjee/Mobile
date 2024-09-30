@@ -1,1 +1,1 @@
-# equality - 
+# equality
