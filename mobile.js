@@ -177,5 +177,30 @@ document.getElementById('search').addEventListener('input', function(e) {
   displayApps(filteredApps);
 });
 
-// Display all apps initially
+// Display all
 displayApps(apps);
+
+// Answers key
+const correctAnswers = {
+  q1: 'Paris',
+  q2: '8',
+  q3: 'Jupiter'
+};
+
+// Function to submit the exam and calculate score
+function submitExam() {
+  const form = document.forms['exam-form'];
+  let score = 0;
+
+  // Loop through the answers
+  for (const [question, correctAnswer] of Object.entries(correctAnswers)) {
+    const userAnswer = form[question].value;
+    if (userAnswer === correctAnswer) {
+      score++;
+    }
+  }
+
+  // Display the result
+  document.getElementById('score').textContent = score;
+  document.getElementById('result').style.display = 'block';
+}
