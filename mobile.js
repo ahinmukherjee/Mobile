@@ -124,3 +124,58 @@ document.getElementById('studentForm').addEventListener('submit', function(e) {
             // Clear the input field
             chatInput.value = "";
         }
+
+const apps = [
+  {
+    id: 1,
+    name: "App 1",
+    description: "This is a great app.",
+    downloadLink: "#"
+  },
+  {
+    id: 2,
+    name: "App 2",
+    description: "This app is awesome.",
+    downloadLink: "#"
+  },
+  {
+    id: 3,
+    name: "App 3",
+    description: "Try this app now!",
+    downloadLink: "#"
+  }
+];
+
+// Function to display the apps
+function displayApps(apps) {
+  const appList = document.getElementById('app-list');
+  appList.innerHTML = ''; // Clear any existing apps
+
+  apps.forEach(app => {
+    const appCard = document.createElement('div');
+    appCard.className = 'app-card';
+    
+    appCard.innerHTML = `
+      <h3>${app.name}</h3>
+      <p>${app.description}</p>
+      <button onclick="downloadApp('${app.downloadLink}')">Download</button>
+    `;
+    
+    appList.appendChild(appCard);
+  });
+}
+
+// Function to simulate downloading an app
+function downloadApp(link) {
+  alert('Downloading from ' + link);
+}
+
+// Search functionality
+document.getElementById('search').addEventListener('input', function(e) {
+  const searchText = e.target.value.toLowerCase();
+  const filteredApps = apps.filter(app => app.name.toLowerCase().includes(searchText));
+  displayApps(filteredApps);
+});
+
+// Display all apps initially
+displayApps(apps);
