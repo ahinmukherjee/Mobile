@@ -100,3 +100,27 @@ document.getElementById('studentForm').addEventListener('submit', function(e) {
     document.getElementById('output').innerHTML = output;
     document.getElementById('studentForm').reset();
 });
+
+
+            function sendMessage() {
+            // Get the chat input value
+            const chatInput = document.getElementById("chatInput");
+            const messageText = chatInput.value;
+
+            if (messageText.trim() === "") return; // Prevent empty messages
+
+            // Create a new message element
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message");
+            messageElement.textContent = messageText;
+
+            // Add the message to the messages container
+            const messagesContainer = document.getElementById("messages");
+            messagesContainer.appendChild(messageElement);
+
+            // Scroll to the bottom of the messages container
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Clear the input field
+            chatInput.value = "";
+        }
