@@ -53,3 +53,50 @@ async function verify(token) {
   const payload = ticket.getPayload();
   console.log(payload);
 }
+
+
+let cart = [];
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const productId = e.target.dataset.id;
+        addToCart(productId);
+    });
+});
+
+function addToCart(productId) {
+    cart.push(productId);
+    alert(`Product ${productId} added to cart!`);
+    console.log(cart);
+}
+
+document.getElementById('studentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const age = document.getElementById('age').value;
+    const course = document.getElementById('course').value;
+
+    // Validate 
+    if (!name || !email || !age || !course) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    if (age < 18 || age > 100) {
+        alert('Please enter a valid age between 18 and 100.');
+        return;
+    }
+
+    const output = `
+        <h3>Student Information</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Age:</strong> ${age}</p>
+        <p><strong>Course:</strong> ${course}</p>
+    `;
+
+    document.getElementById('output').innerHTML = output;
+    document.getElementById('studentForm').reset();
+});
